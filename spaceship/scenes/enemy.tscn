@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlsafjmbh238q"]
+
+[ext_resource type="Texture2D" uid="uid://bvc0von62j1vo" path="res://assets/ship2.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://d3bkbqev4fn4d" path="res://scripts/pursuer.gd" id="1_md0e3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 26.4764
+
+[node name="enemy" type="Node2D"]
+script = ExtResource("1_md0e3")
+
+[node name="enemy_area" type="Area2D" parent="."]
+
+[node name="enemy_sprite" type="Sprite2D" parent="enemy_area"]
+texture = ExtResource("1_7p1mj")
+
+[node name="enemy_colision" type="CollisionShape2D" parent="enemy_area"]
+shape = SubResource("CircleShape2D_md0e3")
