@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cewwot48us0dq"]
+
+[ext_resource type="Texture2D" uid="uid://c55775ajibgil" path="res://assets/ship1.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cdiax7q5bb4l2" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(59, 50)
+
+[node name="player" type="Node2D"]
+
+[node name="player_area" type="Area2D" parent="."]
+script = ExtResource("1_g2els")
+
+[node name="player_sprite" type="Sprite2D" parent="player_area"]
+position = Vector2(3.8146973e-06, 3.8146973e-06)
+scale = Vector2(0.9453125, 0.9453125)
+texture = ExtResource("1_3vyb7")
+
+[node name="player_collision" type="CollisionShape2D" parent="player_area"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_g2els")
+
+[connection signal="area_entered" from="player_area" to="player_area" method="_on_ball_area_entered"]
