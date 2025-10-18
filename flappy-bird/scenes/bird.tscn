@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dilc421qn8oq6"]
+
+[ext_resource type="Script" uid="uid://dcenhf5r63cax" path="res://scripts/bird.gd" id="1_3po83"]
+[ext_resource type="Texture2D" uid="uid://kcvckcm543qo" path="res://assets/bird.png" id="1_kqhkv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3po83"]
+radius = 13.0
+height = 26.0
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_3po83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03125, 0.03100586)
+texture = ExtResource("1_kqhkv")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3po83")
