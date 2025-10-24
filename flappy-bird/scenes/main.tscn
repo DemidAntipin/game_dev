@@ -15,3 +15,10 @@ texture = ExtResource("1_o5qli")
 [node name="bird" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(214, 380)
 scale = Vector2(2.5, 2.5)
+
+[node name="score" type="Label" parent="."]
+z_index = 2
+offset_left = 285.0
+offset_top = 9.0
+offset_right = 558.0
+offset_bottom = 70.0

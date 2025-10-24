@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkh4qe0e6a34l"]
+[gd_scene load_steps=6 format=3 uid="uid://dkh4qe0e6a34l"]
 
 [ext_resource type="Texture2D" uid="uid://36kdwhdnaueh" path="res://assets/pipe.png" id="1_7ukg5"]
 [ext_resource type="Script" uid="uid://5ggqyvpk6xf0" path="res://scripts/obstacle_main.gd" id="1_cjuko"]
@@ -7,36 +7,46 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ukg5"]
 size = Vector2(123.5, 634.75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjuko"]
+size = Vector2(126, 272)
+
 [node name="obstacle" type="Node2D"]
 script = ExtResource("1_cjuko")
+
+[node name="obstacle_area2" type="Area2D" parent="."]
+script = ExtResource("2_cjuko")
+
+[node name="obstacle_background" type="Sprite2D" parent="obstacle_area2"]
+position = Vector2(1085.12, -88.274994)
+rotation = 1.5707964
+scale = Vector2(0.35, 0.32)
+texture = ExtResource("1_7ukg5")
+
+[node name="obstacle_collision" type="CollisionShape2D" parent="obstacle_area2"]
+position = Vector2(1085.12, -84.274994)
+shape = SubResource("RectangleShape2D_7ukg5")
 
 [node name="obstacle_area" type="Area2D" parent="."]
 script = ExtResource("2_cjuko")
 
 [node name="obstacle_background" type="Sprite2D" parent="obstacle_area"]
-position = Vector2(1085, 767)
+position = Vector2(1087.12, 820.725)
 rotation = -1.5707964
 scale = Vector2(0.35, 0.32)
 texture = ExtResource("1_7ukg5")
 
 [node name="obstacle_collision" type="CollisionShape2D" parent="obstacle_area"]
-position = Vector2(1085, 764.375)
+position = Vector2(1087.12, 818.1)
 shape = SubResource("RectangleShape2D_7ukg5")
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
-[node name="obstacle_area" type="Area2D" parent="obstacle_area"]
-script = ExtResource("2_cjuko")
+[node name="score_area" type="Area2D" parent="."]
 
-[node name="obstacle_background" type="Sprite2D" parent="obstacle_area/obstacle_area"]
-position = Vector2(1085, 0)
-rotation = 1.5707964
-scale = Vector2(0.35, 0.32)
-texture = ExtResource("1_7ukg5")
-
-[node name="obstacle_collision" type="CollisionShape2D" parent="obstacle_area/obstacle_area"]
-position = Vector2(1085, 4)
-shape = SubResource("RectangleShape2D_7ukg5")
+[node name="score_collision" type="CollisionShape2D" parent="score_area"]
+position = Vector2(1086, 367)
+shape = SubResource("RectangleShape2D_cjuko")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="area_entered" from="obstacle_area" to="obstacle_area" method="_on_area_entered"]
-[connection signal="area_entered" from="obstacle_area/obstacle_area" to="obstacle_area/obstacle_area" method="_on_area_entered"]
+[connection signal="body_entered" from="obstacle_area2" to="obstacle_area2" method="_on_body_entered"]
+[connection signal="body_entered" from="obstacle_area" to="obstacle_area" method="_on_body_entered"]
+[connection signal="body_entered" from="score_area" to="." method="_on_score_area_body_entered"]
