@@ -7,17 +7,21 @@ enum State {IDLE, FALLING, JUMP, DEATH}
 
 var current_state: State = State.IDLE
 
+var initial_position: Vector2
+
 signal game_over
 
 func set_state(new_state: State):
 	current_state = new_state
 	
 func _ready() -> void:
+	initial_position = global_position
 	set_state(State.IDLE)
+	
 	
 func handle_idle(delta):
 	#animation.play("idle")
-	pass
+	velocity = Vector2.ZERO
 		
 func handle_jump(delta):
 	#animation.play("jump")
@@ -38,6 +42,8 @@ func handle_death(delta):
 	game_over.emit()
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
 	match current_state:
 		State.IDLE:
 			handle_idle(delta)
@@ -47,10 +53,12 @@ func _physics_process(delta: float) -> void:
 			handle_jump(delta)
 		State.DEATH:
 			handle_death(delta)
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
 		
 	move_and_slide()
+
+func reset():
+	global_position = initial_position
+	set_state(State.IDLE)
 
 func damage():
 	set_state(State.DEATH)

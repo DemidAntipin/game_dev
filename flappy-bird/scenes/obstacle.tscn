@@ -10,7 +10,7 @@ size = Vector2(123.5, 634.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjuko"]
 size = Vector2(126, 272)
 
-[node name="obstacle" type="Node2D"]
+[node name="obstacle" type="Node2D" groups=["obstacles"]]
 script = ExtResource("1_cjuko")
 
 [node name="obstacle_area2" type="Area2D" parent="."]
