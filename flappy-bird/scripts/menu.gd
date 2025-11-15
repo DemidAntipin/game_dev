@@ -1,12 +1,12 @@
-extends CanvasLayer
+extends Panel
 
 signal restart
 
-@onready var container = get_node("VBoxContainer")
-@onready var play_button: Button = get_node("VBoxContainer/play")
-@onready var continue_button: Button = get_node("VBoxContainer/continue")
-@onready var to_main_button: Button = get_node("VBoxContainer/to_main")
-@onready var exit_button: Button = get_node("VBoxContainer/exit")
+@onready var container = get_node("CenterContainer/VBoxContainer")
+@onready var play_button: Button = container.get_node("play")
+@onready var continue_button: Button = container.get_node("continue")
+@onready var to_main_button: Button = container.get_node("to_main")
+@onready var exit_button: Button = container.get_node("exit")
 	
 func _ready() -> void:
 	to_main_button.pressed.connect(_main_menu)

@@ -5,6 +5,8 @@ const GRAVITY = 800.0
 
 enum State {IDLE, FALLING, JUMP, DEATH}
 
+@onready var animation = get_node("AnimationPlayer")
+
 var current_state: State = State.IDLE
 
 var initial_position: Vector2
@@ -20,18 +22,18 @@ func _ready() -> void:
 	
 	
 func handle_idle(delta):
-	#animation.play("idle")
+	animation.play("idle")
 	velocity = Vector2.ZERO
 		
 func handle_jump(delta):
-	#animation.play("jump")
+	animation.play("jump")
 	if velocity.y > 0:
 		set_state(State.FALLING)
 	if Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
 
 func handle_falling(delta):
-	#animation.play("falling")
+	animation.play("idle")
 	if Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
 		set_state(State.JUMP)

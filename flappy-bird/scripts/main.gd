@@ -40,16 +40,16 @@ func handle_game_over(delta):
 		obstacle.queue_free()
 	player.reset()
 	results.visible = true
-	results.get_node("VBoxContainer/score").text = "Your score: " + str(score)
+	results.get_node("CenterContainer/VBoxContainer/score").text = "Your score: " + str(score)
 	
 func _ready() -> void:
 	player.game_over.connect(_on_game_over)
-	menu.get_node("VBoxContainer/play").pressed.connect(_on_play_button_pressed)
-	menu.get_node("VBoxContainer/exit").pressed.connect(_on_exit_button_pressed)
-	menu.get_node("VBoxContainer/continue").pressed.connect(_on_continue_button_pressed)
-	results.get_node("VBoxContainer/new_game").pressed.connect(_on_play_button_pressed)
-	results.get_node("VBoxContainer/to_main").pressed.connect(_on_main_menu_button_pressed)
-	results.get_node("VBoxContainer/exit").pressed.connect(_on_exit_button_pressed)
+	menu.get_node("CenterContainer/VBoxContainer/play").pressed.connect(_on_play_button_pressed)
+	menu.get_node("CenterContainer/VBoxContainer/exit").pressed.connect(_on_exit_button_pressed)
+	menu.get_node("CenterContainer/VBoxContainer/continue").pressed.connect(_on_continue_button_pressed)
+	results.get_node("CenterContainer/VBoxContainer/new_game").pressed.connect(_on_play_button_pressed)
+	results.get_node("CenterContainer/VBoxContainer/to_main").pressed.connect(_on_main_menu_button_pressed)
+	results.get_node("CenterContainer/VBoxContainer/exit").pressed.connect(_on_exit_button_pressed)
 	menu.restart.connect(_restart)
 	menu.visible = true
 	score_label.visible = false

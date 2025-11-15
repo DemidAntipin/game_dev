@@ -18,9 +18,12 @@ scale = Vector2(0.7619048, 1.0013021)
 texture = ExtResource("1_o5qli")
 
 [node name="menu" parent="." instance=ExtResource("3_jyhfs")]
+process_mode = 3
+anchors_preset = 15
 
 [node name="results" parent="." instance=ExtResource("4_tbgi4")]
 visible = false
+anchors_preset = 15
 
 [node name="bird" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(214, 380)
