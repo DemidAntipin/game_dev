@@ -27,6 +27,7 @@ func handle_idle(delta):
 		
 func handle_jump(delta):
 	animation.play("jump")
+	velocity.x = 100
 	if velocity.y > 0:
 		set_state(State.FALLING)
 	if Input.is_action_just_pressed("jump"):
@@ -34,13 +35,13 @@ func handle_jump(delta):
 
 func handle_falling(delta):
 	animation.play("idle")
+	velocity.x = 100
 	if Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
 		set_state(State.JUMP)
 
 func handle_death(delta):
-	#animation.play("death")
-	print("you lose")
+	animation.play("death")
 	game_over.emit()
 
 func _physics_process(delta: float) -> void:
@@ -55,7 +56,6 @@ func _physics_process(delta: float) -> void:
 			handle_jump(delta)
 		State.DEATH:
 			handle_death(delta)
-		
 	move_and_slide()
 
 func reset():
@@ -66,4 +66,5 @@ func damage():
 	set_state(State.DEATH)
 	
 func start_game():
+	velocity.x = 100
 	set_state(State.FALLING)

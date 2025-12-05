@@ -11,11 +11,8 @@ script = ExtResource("1_sugp2")
 [node name="world" type="Node2D" parent="."]
 
 [node name="ui" type="Node2D" parent="."]
-process_mode = 3
-z_index = 10
 
 [node name="hud" parent="ui" instance=ExtResource("6_tefeu")]
-process_mode = 3
 script = ExtResource("3_tbgi4")
 
 [node name="menu" parent="ui" instance=ExtResource("3_jyhfs")]

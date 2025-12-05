@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://jok1omdrcxp5"]
+
+[ext_resource type="Script" uid="uid://dbmuidp64qvcl" path="res://scripts/level.gd" id="1_2r41h"]
+[ext_resource type="Texture2D" uid="uid://b1lovd4drycf1" path="res://assets/parallax/parallax-mountain-bg.png" id="1_ppgk2"]
+[ext_resource type="Texture2D" uid="uid://dfipiyjsvpgfu" path="res://assets/parallax/parallax-mountain-montain-far.png" id="2_2r41h"]
+[ext_resource type="PackedScene" uid="uid://dkh4qe0e6a34l" path="res://scenes/obstacle.tscn" id="2_klq6b"]
+[ext_resource type="Texture2D" uid="uid://1olraclamfvg" path="res://assets/parallax/parallax-mountain-mountains.png" id="3_klq6b"]
+[ext_resource type="Texture2D" uid="uid://b2qmfintxaptv" path="res://assets/parallax/parallax-mountain-trees.png" id="4_b121j"]
+[ext_resource type="Texture2D" uid="uid://c67o4wefsd0f5" path="res://assets/parallax/parallax-mountain-foreground-trees.png" id="5_8c41q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
+size = Vector2(1024, 4)
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_2r41h")
+obstacle_scene = ExtResource("2_klq6b")
+offscreen_distance = 350.0
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1024, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D"]
+position = Vector2(511.99997, 385)
+scale = Vector2(3.7647057, 4.7875004)
+texture = ExtResource("1_ppgk2")
+
+[node name="Parallax2D2" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1024, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D2"]
+position = Vector2(512, 384.00003)
+scale = Vector2(3.7647057, 4.8)
+texture = ExtResource("2_2r41h")
+
+[node name="Parallax2D3" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(1024, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D3"]
+position = Vector2(512.00006, 384.00003)
+scale = Vector2(1.8823531, 4.8)
+texture = ExtResource("3_klq6b")
+
+[node name="Parallax2D4" type="Parallax2D" parent="background"]
+repeat_size = Vector2(1024, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D4"]
+position = Vector2(514.5, 384.00003)
+scale = Vector2(1.8841913, 4.8)
+texture = ExtResource("4_b121j")
+
+[node name="Parallax2D5" type="Parallax2D" parent="background"]
+repeat_size = Vector2(1024, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D5"]
+position = Vector2(514.5, 384.00003)
+scale = Vector2(1.8841913, 4.8)
+texture = ExtResource("5_8c41q")
+
+[node name="static" type="Node2D" parent="."]
+
+[node name="floor" type="StaticBody2D" parent="static"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static/floor"]
+position = Vector2(514, 768)
+scale = Vector2(99999, 1)
+shape = SubResource("RectangleShape2D_olg7q")
+
+[node name="ceil" type="StaticBody2D" parent="static"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static/ceil"]
+position = Vector2(513, 0)
+scale = Vector2(99999, 1)
+shape = SubResource("RectangleShape2D_olg7q")
+
+[node name="obstacles" type="Node2D" parent="."]
+
+[node name="spawn_point" type="Marker2D" parent="."]
+position = Vector2(511, 402)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

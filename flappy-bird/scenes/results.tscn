@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://4h56xhkaqr61"]
 
-[ext_resource type="Texture2D" uid="uid://kcvckcm543qo" path="res://assets/bird.png" id="1_qh7lt"]
+[ext_resource type="Texture2D" uid="uid://x0g8retwy376" path="res://assets/dead.png" id="1_qh7lt"]
 
 [sub_resource type="Gradient" id="Gradient_qh7lt"]
 offsets = PackedFloat32Array(0, 0.025974026)
@@ -9,7 +9,7 @@ offsets = PackedFloat32Array(0, 0.025974026)
 gradient = SubResource("Gradient_qh7lt")
 
 [node name="results" type="Panel"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1024.0
@@ -39,7 +39,6 @@ horizontal_alignment = 1
 layout_mode = 2
 texture = ExtResource("1_qh7lt")
 expand_mode = 4
-flip_v = true
 
 [node name="score" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
