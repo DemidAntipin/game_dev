@@ -13,6 +13,7 @@ var right_x: float = globals.world_offset
 var left_x:float = globals.world_offset
 
 func _ready() -> void:
+	globals.null_score()
 	audio_player.play()
 	var screen_size = get_viewport_rect().size
 	right_x += screen_size.x
@@ -26,15 +27,14 @@ func _process(delta):
 	var left_edge = camera_position.x - half_w
 	var right_edge = camera_position.x + half_w
 	
-	while right_x<right_edge*offscreen_distance:
+	while right_x<right_edge+offscreen_distance:
 		var shift = randi_range(-globals.shift_y, globals.shift_y)
 		_spawn_obstacle(right_x+globals.gap, shift)
 		right_x = spawned_obstacles[-1].global_position.x
-	for i in range(spawned_obstacles.size()-1,-1,-1):
-		var obstacle = spawned_obstacles[i]
+	for obstacle in spawned_obstacles:
 		if obstacle.position.x<left_edge - offscreen_distance:
 			obstacle.queue_free()
-			spawned_obstacles.remove_at(i)
+			spawned_obstacles.pop_front()
 	left_x = left_edge
 	globals.world_offset = left_x
 			
@@ -51,11 +51,13 @@ func _spawn_obstacle(x:float,shift:int):
 	spawned_obstacles.append(obstacle)
 	
 func restart():
-	globals.world_offset = 0
-	globals.score = 0
-	left_x = 0
-	right_x = get_viewport_rect().size.x
 	for obstacle in obstacles.get_children():
 		obstacle.queue_free()
 	spawned_obstacles = []
+	audio_player.stop()
+	player.reset()
+	globals.world_offset = 0
+	left_x = 0
+	right_x = get_viewport_rect().size.x
 	player.global_position = get_node("spawn_point").global_position
+	self.queue_free()

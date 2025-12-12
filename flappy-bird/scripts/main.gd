@@ -20,6 +20,8 @@ func _ready() -> void:
 	world.add_child(player)
 	menu.level_changed.connect(load_level)
 	player.game_over.connect(menu._on_game_over)
+	menu.restart.connect(hud.update_score)
+	globals.zero_score.connect(hud.update_score)
 	#load_settings()
 
 func load_level(index):
@@ -37,8 +39,9 @@ func load_level(index):
 	current_level.player = player
 	current_level.hud = hud
 	menu.restart.connect(current_level.restart)
-	menu.restart.connect(hud.update_score)
+	player.game_over.connect(current_level.restart)
 	player.start_game()
+	current_level.get_node("AudioStreamPlayer").play()
 	
 func save_settings():
 	var config = ConfigFile.new()

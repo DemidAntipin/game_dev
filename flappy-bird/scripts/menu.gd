@@ -31,28 +31,33 @@ func _on_exit_button_pressed() -> void:
 	globals.exit()
 
 func _on_to_main_pressed() -> void:
+	globals.resume()
 	get_node("results").visible = false
-	get_node("CenterContainer").visible = true
+	container.visible = true
 	play_button.visible=true
 	continue_button.visible=false
 	to_main_button.visible=false
+	$AudioStreamPlayer.stream = load("res://assets/audio/main_menu_theme.mp3")
+	$AudioStreamPlayer.play()
 	restart.emit()
 
 func _on_play_pressed() -> void:
-	get_node("results").visible = false
-	get_node("CenterContainer").visible = true
+	$results.visible = false
+	container.visible = true
 	play_button.visible=false
 	continue_button.visible=true
 	to_main_button.visible=true
+	$AudioStreamPlayer.stop()
 	level_changed.emit(globals.level_index)
-	restart.emit()
 	hide()
 
 func _on_game_over() -> void:
 	show()
-	get_node("results/CenterContainer/VBoxContainer/score").text = "Score: " + str(globals.score)
-	get_node("results").visible = true
-	get_node("CenterContainer").visible = false
+	$AudioStreamPlayer.stream = load("res://assets/audio/losing_theme.mp3")
+	$AudioStreamPlayer.play()
+	$results/CenterContainer/VBoxContainer/score.text = "Score: " + str(globals.score)
+	$results.visible = true
+	container.visible = false
 	
 func _process(delta: float) -> void:
 	global_position.x = globals.world_offset

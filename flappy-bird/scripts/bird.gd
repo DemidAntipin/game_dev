@@ -6,6 +6,7 @@ const GRAVITY = 800.0
 enum State {IDLE, FALLING, JUMP, DEATH}
 
 @onready var animation = get_node("AnimationPlayer")
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var current_state: State = State.IDLE
 
@@ -41,8 +42,7 @@ func handle_falling(delta):
 		set_state(State.JUMP)
 
 func handle_death(delta):
-	animation.play("death")
-	game_over.emit()
+	pass
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -57,14 +57,27 @@ func _physics_process(delta: float) -> void:
 		State.DEATH:
 			handle_death(delta)
 	move_and_slide()
+	handle_collisions()
 
 func reset():
 	global_position = initial_position
 	set_state(State.IDLE)
 
 func damage():
+	animation.animation_finished.connect(func(name): if name == "death": game_over.emit())
+	animation.play("death")
 	set_state(State.DEATH)
+	#game_over.emit()
 	
 func start_game():
 	velocity.x = 100
 	set_state(State.FALLING)
+	
+func handle_collisions():	
+	var collisions_count = get_slide_collision_count()
+	for i in collisions_count:
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if "border" in collider.name:
+			damage()
+		

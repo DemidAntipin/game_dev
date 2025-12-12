@@ -25,10 +25,6 @@ window/size/viewport_width=1024
 window/size/viewport_height=768
 window/stretch/mode="viewport"
 
-[global_group]
-
-obstacles=""
-
 [input]
 
 jump={

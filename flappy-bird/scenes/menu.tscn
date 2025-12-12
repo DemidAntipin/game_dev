@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://buwk5th4ht5ax"]
+[gd_scene load_steps=6 format=3 uid="uid://buwk5th4ht5ax"]
 
 [ext_resource type="Script" uid="uid://ym0i06s027sg" path="res://scripts/menu.gd" id="1_yqeox"]
 [ext_resource type="PackedScene" uid="uid://4h56xhkaqr61" path="res://scenes/results.tscn" id="2_vjb58"]
+[ext_resource type="AudioStream" uid="uid://2pvuav6rja44" path="res://assets/audio/main_menu_theme.mp3" id="3_con2f"]
 
 [sub_resource type="Gradient" id="Gradient_yqeox"]
 offsets = PackedFloat32Array(0, 0.9935065)
@@ -48,6 +49,12 @@ text = "Выйти"
 
 [node name="results" parent="." instance=ExtResource("2_vjb58")]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_con2f")
+autoplay = true
+bus = &"Menu"
+parameters/looping = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/continue" to="." method="_on_resume_button_pressed"]
