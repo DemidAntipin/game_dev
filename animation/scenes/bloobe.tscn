@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://kvnxiyg7w4yv"]
+
+[ext_resource type="Texture2D" uid="uid://be6gwxkuna776" path="res://assets/slime.png" id="1_o2pbg"]
+
+[sub_resource type="Animation" id="Animation_16141"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slime_sprite:region_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("slime_sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 24, 24, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_o2pbg"]
+resource_name = "appear_pulse"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_ia3gc"]
+resource_name = "explode"
+length = 2.0
+
+[sub_resource type="Animation" id="Animation_u0txe"]
+resource_name = "idle"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_7yusm"]
+resource_name = "pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slime_sprite:region_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("slime_sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 24, 24, 24), Rect2(24, 24, 24, 24), Rect2(48, 24, 24, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u0txe"]
+_data = {
+&"RESET": SubResource("Animation_16141"),
+&"appear_pulse": SubResource("Animation_o2pbg"),
+&"explode": SubResource("Animation_ia3gc"),
+&"idle": SubResource("Animation_u0txe"),
+&"pressed": SubResource("Animation_7yusm")
+}
+
+[node name="bloobe" type="Node2D"]
+
+[node name="slime_sprite" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = ExtResource("1_o2pbg")
+region_enabled = true
+region_rect = Rect2(0, 24, 24, 24)
+
+[node name="slime_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u0txe")
+}

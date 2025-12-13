@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm6d4h8uoxcgl"]
+
+[ext_resource type="Script" uid="uid://cvgtl11e14dvq" path="res://scripts/infinity.gd" id="1_qs627"]
+[ext_resource type="AudioStream" uid="uid://decg16iayc54a" path="res://audio/background_2.ogg" id="1_tm2o2"]
+[ext_resource type="Texture2D" uid="uid://0kris3x5voa8" path="res://assets/parallax/parallax-mountain-foreground-trees.png" id="3_3irr2"]
+[ext_resource type="Texture2D" uid="uid://dy6rf3t4d4dxd" path="res://assets/parallax/parallax-mountain-bg.png" id="3_6piki"]
+[ext_resource type="Texture2D" uid="uid://ce4xduhk0fjt3" path="res://assets/parallax/parallax-mountain-trees.png" id="4_fwbj7"]
+[ext_resource type="Texture2D" uid="uid://c73s0jgnxlksg" path="res://assets/parallax/parallax-mountain-montain-far.png" id="5_iuas0"]
+[ext_resource type="Texture2D" uid="uid://di5uftgri0ttj" path="res://assets/parallax/parallax-mountain-mountains.png" id="6_486t8"]
+
+[node name="infinity" type="Node2D"]
+script = ExtResource("1_qs627")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_tm2o2")
+
+[node name="spawn_point" type="Marker2D" parent="."]
+position = Vector2(173, 121)
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="Parallax2D5" type="Parallax2D" parent="background"]
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D5"]
+z_index = 4
+position = Vector2(576.5, 323)
+scale = Vector2(2.1194854, 4.05)
+texture = ExtResource("3_3irr2")
+
+[node name="Parallax2D4" type="Parallax2D" parent="background"]
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D4"]
+z_index = 3
+position = Vector2(576.5, 323)
+scale = Vector2(2.1121323, 4.05)
+texture = ExtResource("4_fwbj7")
+
+[node name="Parallax2D3" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D3"]
+z_index = 2
+position = Vector2(576.5, 323)
+scale = Vector2(4.2463236, 4.05)
+texture = ExtResource("5_iuas0")
+
+[node name="Parallax2D2" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D2"]
+z_index = 1
+position = Vector2(576.5, 323)
+scale = Vector2(2.108456, 4.05)
+texture = ExtResource("6_486t8")
+
+[node name="Parallax2D" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D"]
+position = Vector2(575.50006, 323)
+scale = Vector2(4.231618, 4.05)
+texture = ExtResource("3_6piki")
