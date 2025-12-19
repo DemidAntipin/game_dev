@@ -1,23 +1,184 @@
-[gd_scene load_steps=4 format=3 uid="uid://cewwot48us0dq"]
+[gd_scene load_steps=10 format=3 uid="uid://cewwot48us0dq"]
 
-[ext_resource type="Texture2D" uid="uid://c55775ajibgil" path="res://assets/ship1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cdiax7q5bb4l2" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cfry512bkwqv2" path="res://assets/players/player1_spritej.png" id="2_g2els"]
+[ext_resource type="AudioStream" uid="uid://ii30rmk7udrh" path="res://assets/audio/hit.mp3" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(59, 50)
+size = Vector2(95, 128)
 
-[node name="player" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(95, 128)
 
-[node name="player_area" type="Area2D" parent="."]
+[sub_resource type="Animation" id="Animation_g2els"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_g2els")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_sprite:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player_sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.2666667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 41, 192, 258), Rect2(319, 31, 181, 268), Rect2(621, 9, 181, 299), Rect2(929, 41, 181, 258)]
+}
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_g2els")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_sprite:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player_sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 41, 192, 258)]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_g2els")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_sprite:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player_sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.26666668, 0.43333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(26, 456, 165, 283), Rect2(210, 470, 277, 287), Rect2(519, 427, 329, 309), Rect2(881, 490, 228, 258), Rect2(26, 456, 165, 283)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_qhqgy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
+_data = {
+&"RESET": SubResource("Animation_qhqgy"),
+&"hit": SubResource("Animation_dqkch"),
+&"idle": SubResource("Animation_g2els")
+}
+
+[node name="player" type="CharacterBody2D"]
+rotation = 1.5707964
 script = ExtResource("1_g2els")
 
-[node name="player_sprite" type="Sprite2D" parent="player_area"]
-position = Vector2(3.8146973e-06, 3.8146973e-06)
-scale = Vector2(0.9453125, 0.9453125)
-texture = ExtResource("1_3vyb7")
+[node name="player_sprite" type="Sprite2D" parent="."]
+position = Vector2(3.8146973e-06, 3.814697e-06)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g2els")
+region_enabled = true
+region_rect = Rect2(0, 41, 192, 258)
+region_filter_clip_enabled = true
 
-[node name="player_collision" type="CollisionShape2D" parent="player_area"]
-position = Vector2(-0.5, -1)
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="player_collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 4.371139e-07)
 shape = SubResource("RectangleShape2D_g2els")
 
-[connection signal="area_entered" from="player_area" to="player_area" method="_on_ball_area_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 8.3051634e-07)
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dqkch")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_ball_area_entered"]

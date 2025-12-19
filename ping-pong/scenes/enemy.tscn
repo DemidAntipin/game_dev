@@ -1,21 +1,175 @@
-[gd_scene load_steps=4 format=3 uid="uid://cer0whcox2srf"]
+[gd_scene load_steps=9 format=3 uid="uid://cer0whcox2srf"]
 
-[ext_resource type="Texture2D" uid="uid://c6is1xuvlkfxb" path="res://assets/ship2.png" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://ccc0vpyowgydl" path="res://assets/players/player2_sprite.png" id="2_4ra3w"]
 [ext_resource type="Script" uid="uid://c8wpktm0nd2th" path="res://scripts/enemy.gd" id="2_md0e3"]
+[ext_resource type="AudioStream" uid="uid://ii30rmk7udrh" path="res://assets/audio/hit.mp3" id="3_4ra3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
-size = Vector2(62, 51)
+size = Vector2(159, 82)
+
+[sub_resource type="Animation" id="Animation_4ra3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy_area/enemy_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4ra3w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemy_area/enemy_sprite:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemy_area/enemy_sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 34, 167, 320)]
+}
+
+[sub_resource type="Animation" id="Animation_5uy6h"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy_area/enemy_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4ra3w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemy_area/enemy_sprite:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemy_area/enemy_sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.26666668, 0.43333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(11, 444, 167, 282), Rect2(208, 454, 267, 308), Rect2(517, 403, 316, 330), Rect2(857, 476, 238, 279), Rect2(11, 444, 167, 282)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_4ra3w")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_md0e3"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy_area/enemy_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4ra3w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemy_area/enemy_sprite:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemy_area/enemy_sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.25, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 34, 167, 320), Rect2(314, 21, 170, 334), Rect2(608, 0, 181, 350), Rect2(921, 31, 167, 319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5uy6h"]
+_data = {
+&"RESET": SubResource("Animation_4ra3w"),
+&"hit": SubResource("Animation_5uy6h"),
+&"idle": SubResource("Animation_md0e3")
+}
 
 [node name="enemy" type="Node2D"]
 
 [node name="enemy_area" type="Area2D" parent="."]
 script = ExtResource("2_md0e3")
 
+[node name="enemy_sprite" type="Sprite2D" parent="enemy_area"]
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4ra3w")
+region_enabled = true
+region_rect = Rect2(0, 34, 167, 320)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_area"]
-position = Vector2(0, -0.5)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_md0e3")
 
-[node name="enemy_sprite" type="Sprite2D" parent="enemy_area"]
-texture = ExtResource("1_7p1mj")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5uy6h")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="area_entered" from="enemy_area" to="enemy_area" method="_on_ball_area_entered"]

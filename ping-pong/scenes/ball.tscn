@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://i21bshvlw4ja"]
 
-[ext_resource type="Texture2D" uid="uid://dldrtpvsvja4l" path="res://assets/asteroid.png" id="1_7s4qf"]
 [ext_resource type="Script" uid="uid://krh2411mgmpw" path="res://scripts/ball.gd" id="1_cxlvu"]
+[ext_resource type="Texture2D" uid="uid://dhejgbf2sx2rq" path="res://assets/objects/static_ball.png" id="2_cxlvu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
 radius = 20.024984
@@ -12,7 +12,9 @@ script = ExtResource("1_cxlvu")
 [node name="ball_area" type="Area2D" parent="."]
 
 [node name="ball_sprite" type="Sprite2D" parent="ball_area"]
-texture = ExtResource("1_7s4qf")
+position = Vector2(7.1525574e-07, 1.3113022e-06)
+scale = Vector2(0.5, 0.50000006)
+texture = ExtResource("2_cxlvu")
 
 [node name="ball_collision" type="CollisionShape2D" parent="ball_area"]
 shape = SubResource("CircleShape2D_cxlvu")

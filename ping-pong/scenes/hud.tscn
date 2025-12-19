@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpo2xqvyg6g11"]
+
+[ext_resource type="Theme" uid="uid://7io6nlwaggl1" path="res://resources/theme.tres" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://o40ujcjb8se8" path="res://scripts/hud.gd" id="1_oo0fn"]
+
+[node name="hud" type="Node2D"]
+script = ExtResource("1_oo0fn")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(70, 50)
+offset_left = 434.0
+offset_right = 591.0
+offset_bottom = 56.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 157.0
+offset_bottom = 55.0
+theme = ExtResource("1_ahhtf")
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
