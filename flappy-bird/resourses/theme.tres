@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://7io6nlwaggl1"]
+
+[ext_resource type="FontFile" uid="uid://dohwjd6sy4gql" path="res://assets/fonts/Roboto-VariableFont_wdth,wght.ttf" id="1_51p2u"]
+[ext_resource type="Texture2D" uid="uid://bgi0rm7th3sw3" path="res://assets/ui/ui_sprite.png" id="3_45wu2"]
+
+[sub_resource type="FontVariation" id="FontVariation_huhop"]
+base_font = ExtResource("1_51p2u")
+variation_embolden = 0.75
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_87xyq"]
+texture = ExtResource("3_45wu2")
+region_rect = Rect2(4.5, 121.5, 354, 96.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_45wu2"]
+texture = ExtResource("3_45wu2")
+region_rect = Rect2(8, 124, 348, 92)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_huhop"]
+texture = ExtResource("3_45wu2")
+region_rect = Rect2(12, 4, 340, 92)
+
+[resource]
+default_font = SubResource("FontVariation_huhop")
+default_font_size = 32
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/fonts/font = SubResource("FontVariation_huhop")
+Button/icons/icon = null
+Button/styles/focus = SubResource("StyleBoxTexture_87xyq")
+Button/styles/hover = SubResource("StyleBoxTexture_45wu2")
+Button/styles/normal = SubResource("StyleBoxTexture_huhop")

@@ -1,19 +1,21 @@
 [gd_scene load_steps=2 format=3 uid="uid://dtjc18mbrp5ub"]
 
-[ext_resource type="PackedScene" uid="uid://4h56xhkaqr61" path="res://scenes/results.tscn" id="1_ahhtf"]
+[ext_resource type="Theme" uid="uid://7io6nlwaggl1" path="res://resourses/theme.tres" id="1_ahhtf"]
 
 [node name="hud" type="Node2D"]
 
 [node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(70, 50)
+offset_left = 434.0
+offset_right = 591.0
+offset_bottom = 56.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 9.0
-offset_right = 71.0
-offset_bottom = 32.0
+offset_left = -1.0
+offset_right = 157.0
+offset_bottom = 55.0
+theme = ExtResource("1_ahhtf")
 text = "Score: 0"
-
-[node name="results" parent="." instance=ExtResource("1_ahhtf")]
-visible = false
-anchors_preset = 15
+horizontal_alignment = 1
+vertical_alignment = 1

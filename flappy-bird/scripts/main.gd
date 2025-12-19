@@ -19,6 +19,7 @@ func _ready() -> void:
 	camera.enabled = false
 	world.add_child(player)
 	menu.level_changed.connect(load_level)
+	menu.reset_score.connect(globals.null_score)
 	player.game_over.connect(menu._on_game_over)
 	menu.restart.connect(hud.update_score)
 	globals.zero_score.connect(hud.update_score)

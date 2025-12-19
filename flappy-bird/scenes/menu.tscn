@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://buwk5th4ht5ax"]
+[gd_scene load_steps=12 format=3 uid="uid://buwk5th4ht5ax"]
 
 [ext_resource type="Script" uid="uid://ym0i06s027sg" path="res://scripts/menu.gd" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://bpdslyxmkc8ko" path="res://assets/ui/menu_background.png" id="2_mhnvy"]
 [ext_resource type="PackedScene" uid="uid://4h56xhkaqr61" path="res://scenes/results.tscn" id="2_vjb58"]
 [ext_resource type="AudioStream" uid="uid://2pvuav6rja44" path="res://assets/audio/main_menu_theme.mp3" id="3_con2f"]
+[ext_resource type="Theme" uid="uid://7io6nlwaggl1" path="res://resourses/theme.tres" id="3_v86rl"]
+[ext_resource type="Texture2D" uid="uid://bgi0rm7th3sw3" path="res://assets/ui/ui_sprite.png" id="4_g3eks"]
 
 [sub_resource type="Gradient" id="Gradient_yqeox"]
 offsets = PackedFloat32Array(0, 0.9935065)
@@ -11,41 +14,102 @@ offsets = PackedFloat32Array(0, 0.9935065)
 gradient = SubResource("Gradient_yqeox")
 fill_to = Vector2(1, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g3eks"]
+texture = ExtResource("4_g3eks")
+region_rect = Rect2(384, 0, 293, 100)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v86rl"]
+texture = ExtResource("4_g3eks")
+region_rect = Rect2(384, 124, 293, 88)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_13sgg"]
+texture = ExtResource("4_g3eks")
+region_rect = Rect2(380, 124, 297, 88)
+
 [node name="menu" type="Node2D"]
 script = ExtResource("1_yqeox")
 
 [node name="background" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(512.5, 384)
+scale = Vector2(0.9022888, 1.2101105)
+texture = ExtResource("2_mhnvy")
+
+[node name="filter" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.47058824)
 position = Vector2(512, 384)
 scale = Vector2(16, 12)
 texture = SubResource("GradientTexture2D_vjb58")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-offset_right = 1025.0
-offset_bottom = 768.0
+[node name="CenterContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
-alignment = 1
+clip_contents = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 397.0
+offset_top = 486.5
+offset_right = 728.0
+offset_bottom = 784.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("3_v86rl")
 
 [node name="play" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_v86rl")
 text = "Начать игру"
+autowrap_mode = 2
+autowrap_trim_flags = 0
+icon_alignment = 1
 
 [node name="continue" type="Button" parent="CenterContainer/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_v86rl")
 text = "Продолжить
 "
+icon_alignment = 1
 
 [node name="to_main" type="Button" parent="CenterContainer/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_v86rl")
 text = "В главное меню"
+icon_alignment = 1
 
 [node name="exit" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_v86rl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g3eks")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v86rl")
+theme_override_styles/focus = SubResource("StyleBoxTexture_13sgg")
 text = "Выйти"
+autowrap_mode = 2
+icon_alignment = 1
 
 [node name="results" parent="." instance=ExtResource("2_vjb58")]
 visible = false
@@ -53,7 +117,6 @@ visible = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_con2f")
 autoplay = true
-bus = &"Menu"
 parameters/looping = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/play" to="." method="_on_play_pressed"]

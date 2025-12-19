@@ -325,5 +325,5 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = 3.0
+volume_db = 12.0
 max_polyphony = 32

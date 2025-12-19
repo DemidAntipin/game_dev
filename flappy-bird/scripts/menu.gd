@@ -2,6 +2,7 @@ extends Node2D
 
 signal restart
 signal level_changed
+signal reset_score
 
 @onready var container = get_node("CenterContainer/VBoxContainer")
 @onready var play_button: Button = container.get_node("play")
@@ -32,6 +33,8 @@ func _on_exit_button_pressed() -> void:
 
 func _on_to_main_pressed() -> void:
 	globals.resume()
+	$filter.visible = false
+	reset_score.emit()
 	get_node("results").visible = false
 	container.visible = true
 	play_button.visible=true
@@ -43,6 +46,7 @@ func _on_to_main_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	$results.visible = false
+	$filter.visible = true
 	container.visible = true
 	play_button.visible=false
 	continue_button.visible=true
